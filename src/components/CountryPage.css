@@ -1,0 +1,64 @@
+/* frontend/src/App.css */
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    background-attachment: fixed;
+    /* background-image: linear-gradient(rgb(168, 225, 231),rgb(0, 0, 0)); */
+    backdrop-filter: blur(10px);
+    /* width: 50; */
+    
+  }
+  
+  
+  .card-container {
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    border: 1px solid #cccc;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    /* height: 250px; */
+    /* box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1); */
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    border: 0px solid rgb(0, 0, 0);
+  
+  }
+  
+  .card-image {
+   
+    width: 250px;
+    height: 150px;
+    border-radius: 8px;
+  } 
+  
+  .card-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #1c68ea;
+    /* color: white; */
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  /* .card-link:hover {
+    background-color: #0056b3;
+  
+  } */
+  
+  

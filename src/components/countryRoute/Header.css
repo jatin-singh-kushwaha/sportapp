@@ -1,0 +1,33 @@
+header {
+    /* text-align: center; */
+   /* height: 90px; */
+    padding : 0px;
+    padding-left: 50px;
+    padding-bottom: 1px;
+    background-color: rgba(138, 137, 137, 0.436); /* Optional background overlay */
+    color: rgb(0, 0, 0);
+    /* border-bottom: 2px solid #e0e0e0; */
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .placeholder{
+    /* justify-content: ; */
+    margin-top: 30px;
+    padding-right: 30px;
+    
+  }
+  
+   header h1 {
+    margin: 0px;
+  }
+  
+  header h2 {
+    margin-top: 0;
+    font-weight: bold;
+    opacity: 0.9;
+  }
+  
+  
+   
