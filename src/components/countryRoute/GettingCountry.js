@@ -7,13 +7,12 @@ const GettingCountry = ({ setCountry, setCountryName, country, isCountryPage }) 
     setCountry(countryCode);
     setCountryName(getName(countryCode)); 
 
-    if (isCountryPage) { // Only set the background if it's the CountryPage
+    if (isCountryPage) { 
       const flagImageUrl = `https://flagcdn.com/w1600/${countryCode.toLowerCase()}.jpg`;
       document.body.style.backgroundImage = `url(${flagImageUrl})`;
       document.body.style.backgroundSize = 'cover';
       document.body.style.backgroundPosition = 'center';
     } else {
-      // Reset the background if it's not the CountryPage
       document.body.style.backgroundImage = 'none';
     }
   }, [setCountry, setCountryName, isCountryPage]);
@@ -25,9 +24,10 @@ const GettingCountry = ({ setCountry, setCountryName, country, isCountryPage }) 
         if (!response.ok) throw new Error('Network response was not ok');
         
         const data = await response.json();
-        const countryCode = data.country.toUpperCase(); // Ensure the country code is uppercase
+        console.log(data);
+        const countryCode = data.country.toUpperCase(); 
        
-        updateCountry(countryCode); // Use the update function here
+        updateCountry(countryCode); 
       } catch (error) {
         console.error('Error fetching country data:', error);
       }
@@ -35,20 +35,19 @@ const GettingCountry = ({ setCountry, setCountryName, country, isCountryPage }) 
     
     fetchCountry();
 
-    // Cleanup function
+   
     return () => {
-      document.body.style.backgroundImage = 'none'; // Reset the background image
+      document.body.style.backgroundImage = 'none'; 
     };
   }, [updateCountry]); 
 
-  // Handle country change from the dropdown
   useEffect(() => {
     if (country) {
       updateCountry(country);
     }
-  }, [country, updateCountry]); // Watch for changes to country
+  }, [country, updateCountry]); 
 
-  return null; // This component does not render anything by itself
+  return null; 
 };
 
 export default GettingCountry;

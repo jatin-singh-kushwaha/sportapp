@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, IconButton, Button, FormControl, Select, MenuItem } from '@mui/material';
+import {  IconButton, Button, FormControl, Select, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu'; // Import the MenuIcon
 import Sidebar from './Sidebar'; // Assuming you create a separate Sidebar component
 
@@ -29,9 +29,11 @@ const Header = ({
         </div>
 
         {/* Title (Sports App) */}
-        <Typography variant="h4" className="font-bold text-red-500 mb-2 md:mb-0">
-          Sports App
-        </Typography>
+        <img 
+          src="/favicon.ico" 
+          alt="Sports App Logo" 
+          className="h-12 w-auto"
+        />
 
         {/* Button group for larger screens */}
         <div className="hidden md:flex text-2xl flex-row md:space-x-4">

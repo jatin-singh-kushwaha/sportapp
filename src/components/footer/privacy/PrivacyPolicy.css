@@ -1,0 +1,50 @@
+/* PrivacyPolicy.css */
+
+.privacy-policy-container {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.privacy-policy-title {
+    font-size: 2rem;
+    color: #333;
+}
+
+.effective-date {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #222;
+    margin-top: 20px;
+}
+
+.intro-text, .info-collection-intro, .usage-info, .sharing-info, .security-info, .user-rights-info, .cookies-info, .changes-info, .rights-exercise-info, .contact-info {
+    margin-bottom: 15px;
+}
+
+ul {
+    margin-left: 20px;
+    list-style-type: square;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.contact-details {
+    font-size: 1rem;
+    color: #777;
+}
+
+strong{
+    font-weight: 300px;
+}

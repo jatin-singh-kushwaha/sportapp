@@ -15,10 +15,11 @@ const Footer = () => {
 
                     {/* Center Section: Links */}
                     <div className="flex space-x-6 mb-4 md:mb-0">
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">Home</a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">About</a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a>
+                        <a href="/admin" className="text-gray-400 hover:text-white transition-colors">Admin</a>
+                        <a href="/about" className="text-gray-400 hover:text-white transition-colors">About</a>
+                        <a href="/contact-us" className="text-gray-400 hover:text-white transition-colors">Contact</a>
+                        <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
                     </div>
 
                     {/* Right Section: Social Media Links */}

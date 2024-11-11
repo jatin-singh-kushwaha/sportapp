@@ -11,9 +11,9 @@ const SportsDetail = () => {
     const [loadingTwitter, setLoadingTwitter] = useState(true); // Loading state for Twitter news
     const [error, setError] = useState(null);
     const [twitterError, setTwitterError] = useState(null); // Error state for Twitter news
-    const apiKey = "953d5574b5b3492398349d83ae060fec";
+    
     const [sport, setSport] = useState(null);
-
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
     useEffect(() => {
         const fetchSportData = async () => {
             try {
@@ -33,52 +33,52 @@ const SportsDetail = () => {
             }
         };
 
-        const fetchNews = async () => {
-            try {
-                const response = await fetch(
-                    `https://newsapi.org/v2/everything?q=${sportName}&apiKey=${apiKey}`
-                );
-                const data = await response.json();
-                if (data.articles) {
-                    const sortedArticles = data.articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-                    setNews(sortedArticles.slice(0, 10)); // Display only the first 10 articles
-                } else {
-                    setError('No sports news articles available');
-                }
-            } catch (err) {
-                setError('Failed to fetch sports news');
-            }
-        };
+        // const fetchNews = async () => {
+        //     try {
+        //         const response = await fetch(
+        //             `https://newsapi.org/v2/everything?q=${sportName}&apiKey=${apiKey}`
+        //         );
+        //         const data = await response.json();
+        //         if (data.articles) {
+        //             const sortedArticles = data.articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+        //             setNews(sortedArticles.slice(0, 10)); // Display only the first 10 articles
+        //         } else {
+        //             setError('No sports news articles available');
+        //         }
+        //     } catch (err) {
+        //         setError('Failed to fetch sports news');
+        //     }
+        // };
 
-        const fetchTwitterTrendingNews = async () => {
-            try {
-                const response = await fetch(
-                    `https://twitter241.p.rapidapi.com/AutoComplete/?q=${sportName}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'X-RapidAPI-Key': 'bc9b35d9a2mshea59a5aa14d93f6p17f52ejsnd4132155a629',
-                            'X-RapidAPI-Host': 'twitter241.p.rapidapi.com'
-                        }
-                    }
-                );
-                const data = await response.json();
-                if (data.topics && data.topics.length > 0) {
-                    setTwitterNews(data.topics);
-                } else {
-                    setTwitterError('No trending news available');
-                }
-            } catch (err) {
-                setTwitterError('Failed to fetch Twitter news');
-            } finally {
-                setLoadingTwitter(false);
-            }
-        };
+        // const fetchTwitterTrendingNews = async () => {
+        //     try {
+        //         const response = await fetch(
+        //             `https://twitter241.p.rapidapi.com/AutoComplete/?q=${sportName}`,
+        //             {
+        //                 method: 'GET',
+        //                 headers: {
+        //                     'X-RapidAPI-Key': 'bc9b35d9a2mshea59a5aa14d93f6p17f52ejsnd4132155a629',
+        //                     'X-RapidAPI-Host': 'twitter241.p.rapidapi.com'
+        //                 }
+        //             }
+        //         );
+        //         const data = await response.json();
+        //         if (data.topics && data.topics.length > 0) {
+        //             setTwitterNews(data.topics);
+        //         } else {
+        //             setTwitterError('No trending news available');
+        //         }
+        //     } catch (err) {
+        //         setTwitterError('Failed to fetch Twitter news');
+        //     } finally {
+        //         setLoadingTwitter(false);
+        //     }
+        // };
 
         if (sportName) {
             fetchSportData();
-            fetchNews();
-            fetchTwitterTrendingNews();
+            // fetchNews();
+            // fetchTwitterTrendingNews();
         }
     }, [sportName, apiKey]);
 
@@ -98,13 +98,15 @@ const SportsDetail = () => {
 
     return (
         <div className='mx-2'>
-            <div>
+            <div className='p-4'>
                 <h1 className="text-4xl lg:text-5xl font-bold mb-4">{sport.name}</h1>
                 <img 
-                    src={sport.image} 
-                    alt={sport.name} 
-                    className="w-full h-48 lg:h-64 object-cover mb-4 border border-gray-200 shadow-md rounded-lg transition-transform duration-300 hover:scale-105" 
-                />
+    src={sport.image} 
+    alt={sport.name} 
+    className="w-full h-48 lg:h-64 object-cover mb-4 border border-gray-200 shadow-md rounded-lg 
+               transition-transform duration-200 hover:scale-105 sm:hover:scale-105 lg:hover:scale-105" 
+/>
+
                 <p className="text-lg mb-4">{sport.description}</p>
             </div>
             <div className="flex flex-col lg:flex-row">
@@ -206,7 +208,7 @@ const SportsDetail = () => {
                 <div key={country.countryCode} className="bg-white p-4 rounded-lg shadow-md">
                     <h3 className="font-semibold text-lg">{country.countryCode}</h3>
                     {Array.isArray(country.channels) && country.channels.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-2 gap-2"> {/* Two columns for channels on small screens */}
                             {country.channels.map((channel) => (
                                 <div key={channel.name} className="bg-gray-100 rounded-lg p-4 flex flex-col items-center transform transition-transform hover:scale-105">
                                     <a 
@@ -233,6 +235,7 @@ const SportsDetail = () => {
         )}
     </div>
 </div>
+
 
             </div>
         </div>

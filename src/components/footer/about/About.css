@@ -1,0 +1,79 @@
+/* About.css */
+
+.about-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    line-height: 1.8;
+    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #004080;
+    text-align: center;
+}
+
+.about-container h2 {
+    font-size: 2em;
+    margin-top: 30px;
+    color: #003366;
+    border-bottom: 3px solid #003366;
+    padding-bottom: 5px;
+}
+
+.about-container p {
+    font-size: 1.2em;
+    margin: 15px 0;
+    color: #555;
+}
+
+.about-container ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    margin: 15px 0;
+}
+
+.about-container li {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.about-container li strong ,
+.about-container highlight{
+    color: #004080;
+}
+
+.about-container p,
+.about-container ul {
+    padding-left: 20px;
+}
+
+.about-container .highlight {
+    color: #004080;
+    font-weight: bold;
+}
+
+.about-container .footer-note {
+    margin-top: 40px;
+    font-size: 1em;
+    color: #666;
+    text-align: center;
+}
+
+.about-container .contact-info {
+    font-weight: bold;
+    color: #004080;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.about-container strong{
+    font-weight:800;
+}

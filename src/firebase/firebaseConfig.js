@@ -1,7 +1,9 @@
 // src/firebase/firebaseConfig.js
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"; // Import Firestore
 
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth"; 
+import { getStorage } from 'firebase/storage';
 const firebaseConfig = {
   apiKey: "AIzaSyCxEMLHzfw1GYM-qrDmIjPgQU_qWKkvwzY",
   authDomain: "sportstreamingplatform.firebaseapp.com",
@@ -12,7 +14,12 @@ const firebaseConfig = {
   measurementId: "G-SC6E13YM3F"
 };
 
+// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app); // Initialize Firestore
 
-export { db }; // Export the db object
+// Initialize Firestore and Auth
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app); 
+// Export Firestore and Auth instances
+export { db, auth,storage };
