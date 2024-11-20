@@ -14,6 +14,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import Header from './Header'; // Import the Header component
 import Sidebar from './Sidebar'; // Assuming you have a Sidebar component
+import Cards from './countryRoute/Cards';
+import GettingSite from './countryRoute/GettingSite';
 
 const languageOptions = { 
   IN: {
@@ -37,6 +39,8 @@ const HomePage = ({ countryCode }) => {
   const [language, setLanguage] = useState(localStorage.getItem('preferredLanguage') || 'en');
   const [availableLanguages, setAvailableLanguages] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false); // State for sidebar visibility
+  const [streamingSites, setStreamingSites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -111,11 +115,14 @@ const HomePage = ({ countryCode }) => {
 
   return (
     <section
+    
       className="bg-cover bg-center min-h-screen flex flex-col justify-center"
       style={{
         backgroundImage: "url('/newbg.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize:"100% auto",
+        // backgroundRepeat: 'no-repeat',
+        backgroundPosition:"center",
+        
       }}
     >
       {/* Updated Header with Sidebar */}
@@ -131,12 +138,12 @@ const HomePage = ({ countryCode }) => {
       
       
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} handleExploreSports={handleExploreSports} handleExploreCountries={handleExploreCountries} setSearchDialogOpen={setSearchDialogOpen} />
-
-      <div className="max-w-5xl mx-auto px-4 py-8 bg-transparent bg-opacity-80 p-6 rounded-lg shadow-lg mt-16">
+       
+      <div className="max-w-5xl mx-auto px-4 py-8 bg-transparent bg-opacity-80 p-6 rounded-lg shadow-lg mt-32 mb-32">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div className="lg:w-full text-center">
             <h1 className="text-7xl font-bold mb-4 text-white">
-              Discover Sports in {userLocation}
+              Discover Sports
             </h1>
             <p className="text-white text-3xl mb-8">
               Limitless Sports, Entertainment, and More. 
@@ -194,7 +201,13 @@ const HomePage = ({ countryCode }) => {
           </div>
         </form>
       </div>
-
+      <div className=" max-w-5px px-4 py-8 border-t-4 bg-border border-red-500 bg-black bg-opacity-85 p-6 rounded-lg shadow-lg  mt-7">
+        <div className="p-4 flex flex-col lg:flex-row lg:items-center lg:justify-between ">
+       
+          <div className="lg:w-full text-center">
+          <h3 className='text-5xl mb-5 text-white'>Top streaming sites in {userLocation} </h3>
+            <GettingSite country={countryCode} setStreamingSites={setStreamingSites} setLoading={setLoading} />
+              <Cards streamingSites={streamingSites} loading={loading} /></div></div></div>
       <Dialog
         open={searchDialogOpen}
         onClose={handleCloseSearchDialog}
