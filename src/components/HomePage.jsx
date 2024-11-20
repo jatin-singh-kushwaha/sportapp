@@ -201,6 +201,85 @@ const HomePage = ({ countryCode }) => {
           </div>
         </form>
       </div>
+      
+      <Dialog
+  open={searchDialogOpen}
+  onClose={handleCloseSearchDialog}
+  maxWidth="md"
+  fullWidth
+  PaperProps={{
+    sx: {
+      maxHeight: '100vh',
+      width: '80vw',
+      position: 'fixed', // Ensure it's positioned relative to the viewport
+      top: '150px', // Set a fixed distance from the top of the screen
+      left: '50%', // Position it horizontally in the middle of the screen
+      transform: 'translateX(-50%)', // Correctly center it horizontally
+      overflow: 'auto', // Allow scrolling if content overflows
+    },
+  }}
+>
+  <DialogTitle>
+    <div className="flex items-center">
+      <IconButton className='font-bold'>
+        <SportsSoccerIcon />
+      </IconButton>
+      <h2 className="ml-2 text-3xl font-bold">Search Country & Sports</h2>
+    </div>
+  </DialogTitle>
+
+  <DialogContent dividers>
+    <h2 className="text-2xl font-bold mb-2">Country Selection</h2>
+    <Autocomplete
+      multiple
+      options={Object.values(countries).map(country => ({ name: country.name }))}
+      getOptionLabel={(option) => option.name}
+      value={selectedCountries.map((country) => ({ name: country }))}
+      onChange={(event, newValue) => {
+        setSelectedCountries(newValue.map((country) => country.name));
+      }}
+      renderInput={(params) => (
+        <TextField {...params} variant="outlined" placeholder="Select Countries" />
+      )}
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
+          <Checkbox checked={selected} />
+          <ListItemText primary={option.name} />
+        </li>
+      )}
+    />
+
+    <h2 className="text-2xl font-bold mb-2 mt-4">Sports Selection</h2>
+    <Autocomplete
+      multiple
+      options={sportsData.map(sport => ({ name: sport.name }))}
+      getOptionLabel={(option) => option.name}
+      value={selectedSports.map((sport) => ({ name: sport }))}
+      onChange={(event, newValue) => {
+        setSelectedSports(newValue.map((sport) => sport.name));
+      }}
+      renderInput={(params) => (
+        <TextField {...params} variant="outlined" placeholder="Select Sports" />
+      )}
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
+          <Checkbox checked={selected} />
+          <ListItemText primary={option.name} />
+        </li>
+      )}
+    />
+  </DialogContent>
+  
+  <DialogActions>
+    <Button onClick={handleCloseSearchDialog} color="primary">
+      Cancel
+    </Button>
+    <Button onClick={handleSportSubmit} color="primary">
+      Search
+    </Button>
+  </DialogActions>
+</Dialog>
+
       <div className=" max-w-5px px-4 py-8 border-t-4 bg-border border-red-500 bg-black bg-opacity-85 p-6 rounded-lg shadow-lg  mt-7">
         <div className="p-4 flex flex-col lg:flex-row lg:items-center lg:justify-between ">
        
@@ -208,78 +287,6 @@ const HomePage = ({ countryCode }) => {
           <h3 className='text-5xl mb-5 text-white'>Top streaming sites in {userLocation} </h3>
             <GettingSite country={countryCode} setStreamingSites={setStreamingSites} setLoading={setLoading} />
               <Cards streamingSites={streamingSites} loading={loading} /></div></div></div>
-      <Dialog
-        open={searchDialogOpen}
-        onClose={handleCloseSearchDialog}
-        maxWidth="md"
-        fullWidth
-        PaperProps={{
-          sx: {
-            maxHeight: '100vh',
-            width: '80vw',
-          },
-        }}
-      >
-        <DialogTitle>
-          <div className="flex items-center">
-            <IconButton className='font-bold'>
-              <SportsSoccerIcon />
-            </IconButton>
-            <h2 className="ml-2 text-3xl font-bold">Search Country & Sports</h2>
-          </div>
-        </DialogTitle>
-
-        <DialogContent dividers>
-          <h2 className="text-2xl font-bold mb-2">Country Selection</h2>
-          <Autocomplete
-            multiple
-            options={Object.values(countries).map(country => ({ name: country.name }))}
-            getOptionLabel={(option) => option.name}
-            value={selectedCountries.map((country) => ({ name: country }))}
-            onChange={(event, newValue) => {
-              setSelectedCountries(newValue.map((country) => country.name));
-            }}
-            renderInput={(params) => (
-              <TextField {...params} variant="outlined" placeholder="Select Countries" />
-            )}
-            renderOption={(props, option, { selected }) => (
-              <li {...props}>
-                <Checkbox checked={selected} />
-                <ListItemText primary={option.name} />
-              </li>
-            )}
-          />
-
-          <h2 className="text-2xl font-bold mb-2 mt-4">Sports Selection</h2>
-          <Autocomplete
-            multiple
-            options={sportsData.map(sport => ({ name: sport.name }))}
-            getOptionLabel={(option) => option.name}
-            value={selectedSports.map((sport) => ({ name: sport }))}
-            onChange={(event, newValue) => {
-              setSelectedSports(newValue.map((sport) => sport.name));
-            }}
-            renderInput={(params) => (
-              <TextField {...params} variant="outlined" placeholder="Select Sports" />
-            )}
-            renderOption={(props, option, { selected }) => (
-              <li {...props}>
-                <Checkbox checked={selected} />
-                <ListItemText primary={option.name} />
-              </li>
-            )}
-          />
-        </DialogContent>
-        
-        <DialogActions>
-          <Button onClick={handleCloseSearchDialog} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSportSubmit} color="primary">
-            Search
-          </Button>
-        </DialogActions>
-      </Dialog>
     </section>
   );
 };
